@@ -1,0 +1,1 @@
+java -jar target/vidarray-1.0-SNAPSHOT.jar
