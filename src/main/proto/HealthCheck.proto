@@ -2,7 +2,7 @@ syntax = "proto3";
 
 import "google/api/annotations.proto";
 
-package com.github.bloodriot;
+package grpc.health.v1;
 option java_package = "com.github.bloodriot.protocol";
 option java_multiple_files = true;
 
