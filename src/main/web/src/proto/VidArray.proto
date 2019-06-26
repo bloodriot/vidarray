@@ -1,0 +1,76 @@
+package com.github.bloodriot;
+syntax = "proto3";
+
+message FileDetailsRequest {
+    int32 fileId = 1;
+}
+
+message FileDetailsResponse {
+    int32 fileId = 1;
+    string fileName = 2;
+    repeated string fileTags = 3;
+    string fileDuration = 4;
+    string fileDate = 5;
+    string filePath = 6;
+    string filePreviewSrc = 7;
+    string fileType = 8;
+}
+
+message FileListResponse {
+    string cursor = 1;
+    repeated FileDetailsResponse fileDetails = 2;
+}
+
+message FileListRequest {
+    string cursor = 1;
+    int32 results_per_page = 2;
+    string query = 3;
+}
+
+message AddTagRequest {
+    int32 fileId = 1;
+    int32 tagId = 2;
+}
+
+message RemoveTagRequest {
+    int32 fileId = 1;
+    int32 tagId = 2;
+}
+
+message ModifyTagResponse {
+    int32 fileId = 1;
+    repeated string tags = 2;
+}
+
+message ListTagsRequest {
+    string cursor = 1;
+    int32 results_per_page = 2;
+    string query = 3;
+}
+
+message ListTagsResponse {
+    string cursor = 1;
+    repeated string tag = 2;
+}
+
+service VidArray {
+    // Request file details for a single file.
+    rpc getFileDetails(FileDetailsRequest) returns (FileDetailsResponse) {
+    }
+
+    // Request file details for multiple files.
+    rpc getFileList(FileListRequest) returns (FileListResponse) {
+    }
+
+    // Add a tag to a file
+    rpc addFileTag(AddTagRequest) returns (ModifyTagResponse) {
+    }
+
+    // Remove a tag from a file
+    rpc removeFileTag(RemoveTagRequest) returns (ModifyTagResponse) {
+    }
+
+    // Get a list of all the tags
+    rpc getTagsList(ListTagsRequest) returns (ListTagsResponse) {
+    }
+}
